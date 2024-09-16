@@ -3,7 +3,7 @@ const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 
 const validateCarUpdate = async (req, res, next) => {
-  const { brand, model, year, items } = req.body;
+  const { brand, model, year } = req.body;
   const { id } = req.params;
 
   try {
