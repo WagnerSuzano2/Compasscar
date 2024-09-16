@@ -7,22 +7,22 @@ const validateCarRegistration = async (req, res, next) => {
 
   try {
     if (!brand) {
-      return res.status(400).json("brand is required");
+      return res.status(400).json({ error: "brand is required" });
     }
     if (!model) {
-      return res.status(400).json("model is required");
+      return res.status(400).json({ error: "model is required" });
     }
     if (!year) {
-      return res.status(400).json("year is required");
+      return res.status(400).json({ error: "year is required" });
     }
     if (!items.length) {
-      return res.status(400).json("items is required");
+      return res.status(400).json({ error: "items is required" });
     }
 
     if (isNaN(year) || year < currentYear - 10 || year > currentYear) {
-      return res
-        .status(400)
-        .json(`year should be between ${currentYear - 10} and ${currentYear}`);
+      return res.status(400).json({
+        error: `year should be between ${currentYear - 10} and ${currentYear}`,
+      });
     }
 
     const [rows] = await pool.query(
@@ -33,7 +33,7 @@ const validateCarRegistration = async (req, res, next) => {
     if (rows.length > 0) {
       return res
         .status(409)
-        .json({ mensagem: "there is already a car with this data" });
+        .json({ error: "there is already a car with this data" });
     }
 
     const itemsFound = [];
