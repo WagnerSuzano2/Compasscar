@@ -47,7 +47,6 @@ const listCars = async (req, res) => {
       data: cars,
     });
   } catch (error) {
-    console.error("Erro ao listar carros:", error);
     return res.status(500).json({ message: "Erro interno do servidor" });
   }
 };
