@@ -5,8 +5,9 @@ const {
   validateCarRegistration,
 } = require("../middlewares/validateCarRegistration");
 const { carRegistration } = require("../controllers/carRegistration");
+const { listCars } = require("../controllers/listCars");
 
 router.post("/api/v1/cars", validateCarRegistration, carRegistration);
-router.get("/api/v1/cars", );
+router.get("/api/v1/cars", listCars);
 
 module.exports = router;
